@@ -1,33 +1,35 @@
 public class BinarySearchTree {
-Node <Album> root ;
+    Node<Album> root;
 
-public BinarySearchTree(){
+    public BinarySearchTree() {
 
-    root = null;
-}
-public void insert(Node<Album> current,Album album1){
-
-if(current!=null){
-    if(current.album.compareTo(album1)>0){
-
-        current = current.leftChild;
-    } else if (current.album.compareTo(album1)<0){
-        current = current.rightChild;
-        insert(current, album1);
+        root = null;
     }
 
-
-
-} else {
-
-    current = new Node<>(album1);
-}
-}
-
-    public Node<Album> insert (Album album1){
-    Node<Album> insertNode = new Node<>(album1);
-    insert(this.root,album1);
-return this.root;
+    public void insert(Node<Album> current, Album album1) {
+        if (current.album.compareTo(album1) > 0) {
+            if (current.leftChild != null) {
+                insert(current.leftChild, album1);
+            } else {
+                current.leftChild = new Node<>(album1);
+            }
+        } else if (current.album.compareTo(album1) < 0) {
+            if (current.rightChild != null) {
+                insert(current.rightChild, album1);
+            } else {
+                current.rightChild = new Node<>(album1);
+            }
+        }
     }
+
+    public Node<Album> insert(Album album1) {
+        if (root == null) {
+            root = new Node<>(album1);
+        } else {
+            insert(root, album1);
+        }
+        return root;
+    }
+
 
 }
