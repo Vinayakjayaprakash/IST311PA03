@@ -25,6 +25,6 @@ class BinarySearchTreeTest {
         tree.insert(album3);
         assertEquals(album3, tree.root.rightChild.album);
     }
-
+//contains test is the same as insert except contains at the end you don't have
 
 }
