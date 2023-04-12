@@ -21,7 +21,6 @@ public class BinarySearchTree {
             }
         }
     }
-
     public Node<Album> insert(Album album1) {
         if (root == null) {
             root = new Node<>(album1);
@@ -30,6 +29,39 @@ public class BinarySearchTree {
         }
         return root;
     }
-
+    public Node<Album> deletePos(int delposition) {
+        IllegalArgumentException IAe = new IllegalArgumentException();
+        if (delposition < 0) {
+            throw IAe;
+        }
+        Node<Album> toDelete;
+        if (root == null) {
+            throw IAe;
+        } else if (delposition == 0) {
+            toDelete = root;
+            root = root.leftChild;
+            if (root != null) {
+                root.rightChild = null;
+            }
+        } else {
+            Node<Album> current = root;
+            int pos = 0;
+            while (pos < delposition - 1 && current.leftChild != null) {
+                current = current.rightChild;
+                pos++;
+            }
+            if (current.leftChild == null) {
+                throw IAe;
+            }
+            toDelete = current.rightChild;
+            current.leftChild = toDelete.rightChild;
+            if (toDelete.leftChild != null) {
+                current.leftChild.rightChild = current;
+            }
+        }
+        toDelete.leftChild = null;
+        toDelete.rightChild = null;
+        return toDelete;
+    }
 
 }
