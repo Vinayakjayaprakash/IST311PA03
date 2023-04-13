@@ -6,7 +6,7 @@ public class BinarySearchTree {
         root = null;
     }
 
-    public Node<Album> insert(Node<Album> current, Album album1) { //finished needs test cases
+    public Node<Album> insert(Node<Album> current, Album album1) {
         if(current != null) {
             if (current.album.compareTo(album1) > 0)
                 current.leftChild = insert(current.leftChild, album1);
@@ -23,9 +23,10 @@ public class BinarySearchTree {
                 this.root = insert(this.root, album1);
                 return this.root;
             }
-    public Node<Album> contains (Node<Album> current, Album album1) { //finished needs test cases
+    public Node<Album> contains (Node<Album> current, Album album1) {
         if(current != null) {
-            if (current.album.compareTo(album1) == 0)  return current;
+            if (current.album.compareTo(album1) == 0)
+                return current;
             else if(current.album.compareTo(album1)<0){
                 current.rightChild = contains(current.rightChild,album1);
             }
@@ -41,14 +42,36 @@ public class BinarySearchTree {
 
 
     public Node<Album> delete (Node<Album> current, Album album1) {
-        //not finished yet
-     return current;
+
+        IllegalArgumentException IAe = new IllegalArgumentException();
+        if(current == null) {
+        throw IAe;
+        }
+        if (current.album.compareTo(album1) == 0) {
+            if (current.leftChild == null) { //checks if left or right subtrees are already null
+                return current.rightChild;
+            } else if (current.rightChild == null) {
+                return current.leftChild;
+            } else {
+                current.album = findMin(current.rightChild); //finds the minimum value in the right subtree and deletes it
+                current.rightChild = delete(current.rightChild, current.album); //recursively deletes that value
+            }
+        } else if (current.album.compareTo(album1) < 0) {
+            current.rightChild = delete(current.rightChild, album1);
+        } else {
+            current.leftChild = delete(current.leftChild, album1);
+        }
+        return current;
     }
-
-
+    private Album findMin(Node<Album> current) {
+        while (current.leftChild != null) {
+            current = current.leftChild;
+        }
+        return current.album;
+    }
     public Node<Album> delete(Album album1){
-        return delete(this.root, album1);
-
+        this.root =  delete(this.root, album1);
+        return this.root;
     }
 
 }

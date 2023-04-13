@@ -51,4 +51,50 @@ class BinarySearchTreeTest {
         bst.contains(album3);
 
     }
+    @Test
+    public void testDeleteRightLeaf() {
+        // Create test data
+        Album album1 = new Album(1, "Test Album 1", 12);
+        Album album2 = new Album(2, "Test Album 2", 21);
+        Album album3 = new Album(3, "Test Album 3", 6);
+
+        // Insert test data into BST
+        BinarySearchTree bst = new BinarySearchTree();
+        bst.insert(album1);
+        bst.insert(album2);
+        bst.insert(album3);
+        bst.delete(album2); //deletes the value of 21 which returns back null (process of deleting a right leaf node)
+        try {
+            int id = bst.root.rightChild.album.numberOfSongs;
+            fail("Expected NullPointerException to be thrown");
+        } catch (NullPointerException e) {
+            // expected exception
+        }
+        assertEquals(6,bst.root.leftChild.album.numberOfSongs);
+    }
+
+    @Test
+    public void testDeleteRoot() {
+        // Create test data
+        Album album1 = new Album(1, "Test Album 1", 12);
+        Album album2 = new Album(2, "Test Album 2", 21);
+        Album album3 = new Album(3, "Test Album 3", 6);
+
+        // Insert test data into BST
+        BinarySearchTree bst = new BinarySearchTree();
+        bst.insert(album1);
+        bst.insert(album2);
+        bst.insert(album3);
+        bst.delete(album1); //deletes the root of 12 right should be null
+        try {
+            int id = bst.root.rightChild.album.numberOfSongs;
+            fail("Expected NullPointerException to be thrown");
+        } catch (NullPointerException e) {
+            // expected exception
+        }
+        assertEquals(6,bst.root.leftChild.album.numberOfSongs);
+    }
+
+
+
 }
