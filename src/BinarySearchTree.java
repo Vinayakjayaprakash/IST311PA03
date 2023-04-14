@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class BinarySearchTree {
     Node<Album> root;
 
@@ -73,6 +75,29 @@ public class BinarySearchTree {
         this.root =  delete(this.root, album1);
         return this.root;
     }
+
+    public BinarySearchTree buildTree (ArrayList <Node> inorder){
+        BinarySearchTree balanced = new BinarySearchTree();
+        //Divide array list into 2 parts
+        //build left subtree using left and right subtrees to build tree
+        return balanced;
+    }
+public ArrayList<Node> getNodes(){
+
+    ArrayList<Node> inorder = new ArrayList<Node>();
+    //insert all nodes from BinarySearchTree into inorder
+
+    return inoreder;
+
+}
+    public BinarySearchTree rebalance(){
+        ArrayList<Node> inorder = new ArrayList<Node>();
+        inorder = getNodes();
+        BinarySearchTree balanced = buildTree(inorder);
+        return balanced;
+    }
+
+
 
 }
 
