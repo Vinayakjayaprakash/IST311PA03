@@ -95,6 +95,31 @@ class BinarySearchTreeTest {
         assertEquals(6,bst.root.leftChild.album.numberOfSongs);
     }
 
+    @Test
+    public void testPartition() {
 
+        Album album1 = new Album(1, "Test Album 1", 12);
+        Album album2 = new Album(2, "Test Album 2", 21);
+        Album album3 = new Album(3, "Test Album 3", 6);
+        Album album4 = new Album(4, "Test Album 4", 18);
+        Album album5 = new Album(5, "Test Album 5", 9);
+        Album album6 = new Album(6, "Test Album 6", 14);
+
+
+        BinarySearchTree bst = new BinarySearchTree();
+        bst.insert(album1);
+        bst.insert(album2);
+        bst.insert(album3);
+        bst.insert(album4);
+        bst.insert(album5);
+        bst.insert(album6);
+
+        // Test partition method
+        ArrayList<Album> partitionedAlbums =  bst.partition(album3);
+        // Check that the partitioned albums are correct
+        assertEquals(3, partitionedAlbums.size());
+        assertEquals(album3, partitionedAlbums.get(0));
+        assertEquals(album4, partitionedAlbums.get(1));
+    }
 
 }
