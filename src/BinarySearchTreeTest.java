@@ -162,4 +162,34 @@ class BinarySearchTreeTest {
         }
     }
 
+    @Test
+    public void testTostring() {
+
+        Album album1 = new Album(1, "Test Album 1", 100);
+        Album album2 = new Album(2, "Test Album 2", 150);
+        Album album3 = new Album(3, "Test Album 3", 125);
+        Album album4 = new Album(4, "Test Album 4", 180);
+        Album album5 = new Album(5, "Test Album 5", 190);
+//
+
+        BinarySearchTree bst = new BinarySearchTree();
+        bst.insert(album1);
+        bst.insert(album2);
+        bst.insert(album3);
+        bst.insert(album4);
+        bst.insert(album5);
+        //      bst.insert(album6);
+
+        // Test tostring method
+        assertEquals("100, N, 150, 125, N, N, 180, N, 190, N, N",bst.toString());
+
+    }
+
+
+
+
+
+
+
+
 }

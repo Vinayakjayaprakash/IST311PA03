@@ -136,5 +136,42 @@ public class BinarySearchTree {
     public ArrayList<Album> partition(Album album1) {
         return this.partition(this.root, album1);
     }
+
+    @Override
+    public String toString() {
+        return treeToString(this.root);
+    }
+
+    // Helper method to recursively construct string representation of tree
+    private String treeToString(Node<Album> node) {
+        if (node == null) {
+            return "N";
+        }
+
+        // Construct string representation of current node
+        String nodeString = Integer.toString(node.album.numberOfSongs);
+
+        // append them recursively
+        // for left child
+        nodeString += ", ";
+        nodeString += treeToString(node.leftChild);
+        //for right child
+        nodeString += ", ";
+        nodeString += treeToString(node.rightChild);
+
+
+        return nodeString;
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
 
