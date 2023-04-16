@@ -115,11 +115,14 @@ class BinarySearchTreeTest {
         bst.insert(album6);
 
         // Test partition method
-        ArrayList<Album> partitionedAlbums =  bst.partition(album3);
+        ArrayList<Album> partitionedAlbums =  bst.partition(album2);
         // Check that the partitioned albums are correct
-        assertEquals(3, partitionedAlbums.size());
+        assertEquals(5, partitionedAlbums.size());
         assertEquals(album3, partitionedAlbums.get(0));
         assertEquals(album4, partitionedAlbums.get(1));
     }
+
+    @Test
+    public void testRebalance() {}
 
 }

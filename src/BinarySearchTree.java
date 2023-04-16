@@ -80,7 +80,7 @@ public class BinarySearchTree {
         return this.root;
     }
 
-  /*  public BinarySearchTree buildTree (ArrayList <Node> inorder){
+   public BinarySearchTree buildTree (ArrayList <Node> inorder){
         BinarySearchTree balanced = new BinarySearchTree();
         //Divide array list into 2 parts
         //build left subtree using left and right subtrees to build tree
@@ -91,7 +91,7 @@ public ArrayList<Node> getNodes(){
     ArrayList<Node> inorder = new ArrayList<Node>();
     //insert all nodes from BinarySearchTree into inorder
 
-    return inoreder;
+    return inorder;
 
 }
     public BinarySearchTree rebalance(){
@@ -100,7 +100,7 @@ public ArrayList<Node> getNodes(){
         BinarySearchTree balanced = buildTree(inorder);
         return balanced;
     }
-*/
+
 
 
     public ArrayList<Album> partition(Node<Album> current, Album album1) {
