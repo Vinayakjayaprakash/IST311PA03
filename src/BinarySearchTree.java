@@ -80,28 +80,46 @@ public class BinarySearchTree {
         return this.root;
     }
 
-   public BinarySearchTree buildTree (ArrayList <Node> inorder){
+    public Node<Album> buildTree(ArrayList<Node> inorder) {
+        if (inorder.isEmpty()) {
+            return null; // Base case: empty list
+        }
+
+        int start = 0;
+        int end = inorder.size() - 1;
+        int mid = (start + end) / 2; //midpoint
+        Node<Album> root = inorder.get(mid);
         BinarySearchTree balanced = new BinarySearchTree();
-        //Divide array list into 2 parts
-        //build left subtree using left and right subtrees to build tree
-        return balanced;
+        balanced.insert(root.album);
+
+        Node<Album> leftInorder = buildTree(new ArrayList<>(inorder.subList(0, mid)));
+        Node<Album> rightInorder = buildTree(new ArrayList<>(inorder.subList(mid + 1, inorder.size())));
+
+        balanced.root.leftChild = leftInorder;
+        balanced.root.rightChild = rightInorder;
+
+        return balanced.root;
     }
-public ArrayList<Node> getNodes(){
 
-    ArrayList<Node> inorder = new ArrayList<Node>();
-    //insert all nodes from BinarySearchTree into inorder
+    public ArrayList<Node> getNodes() {
+        ArrayList<Node> inorder = new ArrayList<>();
+        getNodesHelper(this.root, inorder);
+        return inorder;
+    }
 
-    return inorder;
-
-}
-    public BinarySearchTree rebalance(){
+    private void getNodesHelper(Node<Album> current, ArrayList<Node> inorder) {
+        if (current != null) {
+            getNodesHelper(current.leftChild, inorder);
+            inorder.add(current);
+            getNodesHelper(current.rightChild, inorder);
+        }
+    }
+    public Node<Album>  rebalance(){
         ArrayList<Node> inorder = new ArrayList<Node>();
         inorder = getNodes();
-        BinarySearchTree balanced = buildTree(inorder);
+        Node<Album> balanced = buildTree(inorder);
         return balanced;
     }
-
-
 
     public ArrayList<Album> partition(Node<Album> current, Album album1) {
         ArrayList<Album> result = new ArrayList<>();

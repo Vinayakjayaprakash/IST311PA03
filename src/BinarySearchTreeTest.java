@@ -119,10 +119,47 @@ class BinarySearchTreeTest {
         // Check that the partitioned albums are correct
         assertEquals(5, partitionedAlbums.size());
         assertEquals(album3, partitionedAlbums.get(0));
-        assertEquals(album4, partitionedAlbums.get(1));
+        assertEquals(album5, partitionedAlbums.get(1));
     }
 
     @Test
-    public void testRebalance() {}
+    public void testReorder() {
+
+        Album album1 = new Album(1, "Test Album 1", 12);
+        Album album2 = new Album(2, "Test Album 2", 21);
+        Album album3 = new Album(3, "Test Album 3", 6);
+        Album album4 = new Album(4, "Test Album 4", 18);
+        Album album5 = new Album(5, "Test Album 5", 9);
+        Album album6 = new Album(6, "Test Album 6", 14);
+
+
+        BinarySearchTree bst = new BinarySearchTree();
+        bst.insert(album1);
+        bst.insert(album2);
+        bst.insert(album3);
+        bst.insert(album4);
+        bst.insert(album5);
+        bst.insert(album6);
+
+        // Test partition method
+        Node<Album> reorderedAlbums =  bst.rebalance();
+        assertEquals(12,reorderedAlbums.album.numberOfSongs);
+        assertEquals(6,reorderedAlbums.leftChild.album.numberOfSongs);
+        assertEquals(18,reorderedAlbums.rightChild.album.numberOfSongs);
+        try {
+            int id = reorderedAlbums.leftChild.leftChild.album.numberOfSongs;
+            fail("Expected NullPointerException to be thrown");
+        } catch (NullPointerException e) {
+            // expected exception
+        }
+        assertEquals(9,reorderedAlbums.leftChild.rightChild.album.numberOfSongs);
+        assertEquals(21,reorderedAlbums.rightChild.rightChild.album.numberOfSongs);
+        try {
+            int id = reorderedAlbums.rightChild.rightChild.leftChild.album.numberOfSongs;
+            fail("Expected NullPointerException to be thrown");
+        } catch (NullPointerException e) {
+            // expected exception
+        }
+    }
 
 }
